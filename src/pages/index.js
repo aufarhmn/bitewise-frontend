@@ -4,8 +4,14 @@ import Footer from "@/components/Footer";
 import Button from "@/components/Button";
 import Hero from "@/assets/image/hero.png";
 import Link from "next/link";
+import { useEffect } from "react"; 
 
 export default function Home() {
+  useEffect(() => {
+    localStorage.removeItem("foodChoices")
+    localStorage.removeItem("similarFood")
+  }, []);
+
   return (
     <>
       <Navbar />

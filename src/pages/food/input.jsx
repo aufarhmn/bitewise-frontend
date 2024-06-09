@@ -17,8 +17,10 @@ export default function Input() {
       } catch (error) {
         console.error("Failed to parse food choices from localStorage", error);
       }
+    } else {
+      router.replace("/food");
     }
-  }, []);
+  }, [router]);
 
   const handleCardClick = (index, name) => {
     setSelectedFoodIndex(index);
@@ -37,7 +39,7 @@ export default function Input() {
       .then((res) => {
         console.log(res);
         localStorage.setItem("similarFood", JSON.stringify(res.data));
-        router.push("/food/result")
+        router.push("/food/result");
       })
       .catch((error) => {
         console.log(error);

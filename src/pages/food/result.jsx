@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Button from "@/components/Button";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Result() {
+  const router = useRouter();
   const [foodData, setFoodData] = useState([]);
 
   useEffect(() => {
@@ -14,8 +16,10 @@ export default function Result() {
       } catch (error) {
         console.log("Failed to parse data");
       }
+    } else {
+      router.replace("/food");
     }
-  }, []);
+  }, [router]);
 
   return (
     <>
