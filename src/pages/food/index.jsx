@@ -6,6 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 export default function ML() {
+  const router = useRouter();
   const [method, setMethod] = useState(null);
   const [isVegetarian, setIsVegetarian] = useState(null);
   const [foodType, setFoodType] = useState(null);
@@ -52,6 +53,8 @@ export default function ML() {
       })
       .then((response) => {
         console.log(response);
+        localStorage.setItem("foodChoices", JSON.stringify(response.data));
+        router.push("/food/input")
       })
       .catch((error) => {
         console.log(error);
@@ -80,7 +83,7 @@ export default function ML() {
                   key={index}
                   onClick={() => setMethod(item)}
                   className={`cursor-pointer px-4 py-2 rounded-xl ${
-                    method === item ? "bg-green-400 text-white" : "bg-gray-200"
+                    method === item ? "bg-green-200 text-white" : "bg-gray-200"
                   }`}
                 >
                   <p>{item}</p>
@@ -97,7 +100,7 @@ export default function ML() {
                   onClick={() => setIsVegetarian(item)}
                   className={`cursor-pointer px-4 py-2 rounded-xl ${
                     isVegetarian === item
-                      ? "bg-green-400 text-white"
+                      ? "bg-green-200 text-white"
                       : "bg-gray-200"
                   }`}
                 >
@@ -115,7 +118,7 @@ export default function ML() {
                 key={index}
                 onClick={() => setFoodType(item)}
                 className={`cursor-pointer px-4 py-2 rounded-xl ${
-                  foodType === item ? "bg-green-400 text-white" : "bg-gray-200"
+                  foodType === item ? "bg-green-200 text-white" : "bg-gray-200"
                 }`}
               >
                 <p>{item}</p>
