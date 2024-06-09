@@ -5,6 +5,7 @@ import Button from "@/components/Button";
 import Image from "next/image";
 import Cereal from "@/assets/image/cereal.png";
 import Kebab from "@/assets/image/kebab.png"
+import Link from "next/link";
 
 export default function ChooseMethod() {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -17,7 +18,7 @@ export default function ChooseMethod() {
 
   const items = [
     { id: 1, name: "Restaurant Recommender", image: Cereal, path: "/1"},
-    { id: 2, name: "Food Recommender", image: Kebab, path: "/2" }
+    { id: 2, name: "Food Recommender", image: Kebab, path: "/food" }
   ];
 
   return (
@@ -53,7 +54,9 @@ export default function ChooseMethod() {
             </div>
           ))}
         </div>
-        <Button text="Start!" path={path} />
+        <Link href={path}>
+            <Button text="Start!" />
+        </Link>
       </div>
     </>
   );

@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Button from "@/components/Button";
 import Hero from "@/assets/image/hero.png";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -22,7 +23,9 @@ export default function Home() {
             restaurant around. As a user, you just need to provide some basic
             scoring and voila! BiteWise will rank those choices!
           </p>
-            <Button text={"Start!"} path="/hai" />
+          <Link href="/choose-method">
+            <Button text={"Start!"} />
+          </Link>
         </div>
       </div>
       <Footer />
