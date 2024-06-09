@@ -10,6 +10,7 @@ export default function Home() {
   useEffect(() => {
     localStorage.removeItem("foodChoices")
     localStorage.removeItem("similarFood")
+    localStorage.removeItem("algorithm")
   }, []);
 
   return (
