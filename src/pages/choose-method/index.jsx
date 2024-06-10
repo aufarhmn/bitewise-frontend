@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
-import { useState } from "react";
 import Button from "@/components/Button";
 import Image from "next/image";
+import { useRouter } from "next/router";
+
+import { IoIosInformationCircleOutline } from "react-icons/io";
 import Cereal from "@/assets/image/cereal.png";
 import Kebab from "@/assets/image/kebab.png";
-import { useRouter } from "next/router";
 
 export default function ChooseMethod() {
   const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(null);
   const [path, setPath] = useState("");
+  const [modalContent, setModalContent] = useState("");
 
   const handleClick = (index, path) => {
     setActiveIndex(index);
@@ -19,16 +21,33 @@ export default function ChooseMethod() {
 
   const handleSubmit = () => {
     if (activeIndex == null) {
-        alert("Please choose one method!");
-        return;
-      }
-  
+      alert("Please choose one method!");
+      return;
+    }
+
     router.push(path);
   };
 
+  const handleInfoClick = (content) => {
+    setModalContent(content);
+    document.getElementById("info_modal").showModal();
+  };
+
   const items = [
-    { id: 1, name: "Restaurant Recommender", image: Cereal, path: "/restaurant" },
-    { id: 2, name: "Food Recommender", image: Kebab, path: "/food" }
+    {
+      id: 1,
+      name: "Restaurant Recommender",
+      image: Cereal,
+      path: "/restaurant",
+      info: "Receive personalized restaurant recommendations tailored to your tastes! Choose between two powerful methods—Scoring Method and AHP. Simply define your preferences, assign weights, and score each option to discover your perfect dining experience"
+    },
+    {
+      id: 2,
+      name: "Food Recommender",
+      image: Kebab,
+      path: "/food",
+      info: "Uncover delicious food recommendations tailored just for you! We'll provide a curated selection of choices, and based on your preferences, offer exciting and similar food options that match your taste perfectly. Bon appétit!"
+    }
   ];
 
   return (
@@ -53,10 +72,26 @@ export default function ChooseMethod() {
                 activeIndex === index
                   ? "border-green-200 bg-green-100"
                   : "border-gray-200"
-              } border-2 rounded-lg flex flex-col items-center justify-center gap-2 cursor-pointer`}
+              } border-2 rounded-lg flex flex-col items-center justify-center gap-2 cursor-pointer relative`}
             >
+              <div className="absolute top-2 right-2">
+                <button
+                  className="btn btn-sm btn-circle btn-ghost"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleInfoClick(item.info);
+                  }}
+                >
+                  <IoIosInformationCircleOutline className="w-3/4 h-3/4" />
+                </button>
+              </div>
               <div>
-                <Image src={item.image} alt="Cereal" width={200} height={200} />
+                <Image
+                  src={item.image}
+                  alt={item.name}
+                  width={200}
+                  height={200}
+                />
               </div>
               <div className="font-['Poppins'] font-extrabold text-lg md:text-xl text-center text-green-200">
                 {item.name.split(" ").map((word, idx) => (
@@ -70,6 +105,18 @@ export default function ChooseMethod() {
           <Button text="Start!" />
         </div>
       </div>
+
+      <dialog id="info_modal" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+          <h3 className="font-bold text-lg text-center">About The Method</h3>
+          <p className="py-4 text-center">{modalContent}</p>
+        </div>
+      </dialog>
     </>
   );
 }
