@@ -47,7 +47,7 @@ export default function ML() {
     }
 
     axios
-      .post(`${process.env.NEXT_PUBLIC_BACKEND_URL}${endpoint}`, {
+      .post(`${process.env.NEXT_PUBLIC_AI_URL}${endpoint}`, {
         veg_non: isVeg,
         c_type: foodType
       })

@@ -33,7 +33,7 @@ export default function Input() {
       return;
     }
     axios
-      .post(process.env.NEXT_PUBLIC_BACKEND_URL + "/api/ai/recommendations", {
+      .post(process.env.NEXT_PUBLIC_AI_URL + "/api/ai/recommendations", {
         title: foodSelected
       })
       .then((res) => {
