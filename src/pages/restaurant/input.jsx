@@ -42,6 +42,8 @@ export default function InputRestaurant() {
         )
         .then((res) => {
           console.log(res);
+          localStorage.setItem("restaurantResult", JSON.stringify(res.data.scores));
+          router.push("/restaurant/result");
         })
         .catch((err) => {
           console.log(err);

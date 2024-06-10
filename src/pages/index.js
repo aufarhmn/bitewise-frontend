@@ -11,6 +11,7 @@ export default function Home() {
     localStorage.removeItem("foodChoices")
     localStorage.removeItem("similarFood")
     localStorage.removeItem("algorithm")
+    localStorage.removeItem("restaurantResult")
   }, []);
 
   return (
