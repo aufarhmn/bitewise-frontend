@@ -29,7 +29,7 @@ export default function ChooseAlgorithm() {
   const items = [
     { id: 1, name: "TOPSIS", image: Banana, algorithm: "topsis" },
     { id: 2, name: "Scoring Method", image: Orange, algorithm: "scoring" },
-    { id: 3, name: "AHP", image: Omlete, algorithm: "ahp" }
+    // { id: 3, name: "AHP", image: Omlete, algorithm: "ahp" }
   ];
 
   return (
