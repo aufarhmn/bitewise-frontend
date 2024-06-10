@@ -23,7 +23,7 @@ export default function ChooseAlgorithm() {
       return;
     }
 
-    router.push("/restaurant");
+    router.push("/restaurant/input");
   };
 
   const items = [
