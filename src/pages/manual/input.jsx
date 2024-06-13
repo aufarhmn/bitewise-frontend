@@ -45,10 +45,10 @@ export default function InputRestaurant() {
         <div style="text-align: center;">
           <h3><b>TOPSIS (Technique for Order of Preference by Similarity to Ideal Solution)</b></h3>
           </div>
-          <p><b>Criteria:</b> Criteria are the parameters or factors against which the choices (alternatives) are evaluated. Examples include price, location, food quality, service, ambiance, etc.</p>
-          <p><b>Weights:</b> Weights represent the relative importance of each criterion. Each weight is a numerical value, typically between 0 and 1, and the sum of all weights should be 1. For example, if food quality is more important than location, food quality might have a weight of 0.5 and location might have a weight of 0.3.</p>
+          <p><b>Choices:</b> Choices are the alternatives being evaluated, such as different food (chicken satay, bakso, etc).</p>
+          <p><b>Criteria:</b> Criteria are the parameters or factors against which the choices (alternatives) are evaluated. Examples include price, location, service, ambiance, etc.</p>
+          <p><b>Weights:</b> Weights represent the relative importance of each criterion. Each weight is a numerical value, between 0 and 1, and the sum of all weights should be 1. For example, if food quality is more important than location, food quality might have a weight of 0.5 and location might have a weight of 0.3.</p>
           <p><b>Bias:</b> Bias (negativity bias in this context) indicates whether a criterion is beneficial or non-beneficial. For example, lower price is better (beneficial), while higher distance is worse (non-beneficial).</p>
-          <p><b>Choices:</b> Choices are the alternatives being evaluated, such as different restaurants.</p>
           </div>
         `;
         break;
@@ -58,10 +58,10 @@ export default function InputRestaurant() {
           <div style="text-align: center;">
             <h3><b>Scoring Method</b></h3>
             </div>
+            <p><b>Choices:</b> Choices are the alternatives being evaluated, such as different food (chicken satay, bakso, etc).</p>
             <p><b>Criteria:</b> Criteria are the parameters or factors against which choices are evaluated. Examples include price, location, food quality, service, ambiance, etc.</p>
-            <p><b>Weights:</b> Weights in the scoring method represent the importance of each criterion, similar to TOPSIS. They are numerical values, typically between 0 and 1, summing to 1.</p>
+            <p><b>Weights:</b> Weights in the scoring method represent the importance of each criterion. They are numerical values, typically between 0 and 1, summing to 1.</p>
             <p><b>Bias:</b> Bias in the scoring method refers to whether a higher score on a criterion is positive or negative. For instance, a lower score in "cost" is preferred.</p>
-            <p><b>Choices:</b> Choices are the alternatives being evaluated, such as different restaurants.</p>
           </div>
         `;
         break;
