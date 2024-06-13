@@ -38,6 +38,7 @@ export default function Input() {
       })
       .then((res) => {
         console.log(res);
+        localStorage.setItem("foodSelected", foodSelected);
         localStorage.setItem("similarFood", JSON.stringify(res.data));
         router.push("/food/result");
       })

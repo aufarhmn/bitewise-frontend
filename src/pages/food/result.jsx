@@ -7,12 +7,15 @@ import { useRouter } from "next/router";
 export default function Result() {
   const router = useRouter();
   const [foodData, setFoodData] = useState([]);
+  const [foodSelected, setFoodSelected] = useState("");
 
   useEffect(() => {
+    const foodSelected = localStorage.getItem("foodSelected");
     const data = JSON.parse(localStorage.getItem("similarFood"));
-    if (data) {
+    if (data && foodSelected) {
       try {
         setFoodData(data);
+        setFoodSelected(foodSelected);
       } catch (error) {
         console.log("Failed to parse data");
       }
@@ -29,7 +32,7 @@ export default function Result() {
           <p className="font-bold text-[30px] text-center">
             Here is your <span className="text-green-400">result!</span>
           </p>
-          <p className="text-[17px] py-2 text-center">Yay, its time to eat!</p>
+          <p className="text-[17px] py-2 text-center">Based on your choice, <span className="font-bold text-green-400">{foodSelected}</span>, here is similar food to your choice!</p>
         </div>
         <div className="px-8">
           <table className="min-w-full bg-white rounded-md overflow-hidden">
