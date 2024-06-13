@@ -28,7 +28,7 @@ export default function Home() {
           </p>
           <p className="mt-2 mb-6 font-['Poppins'] text-[20px] w-1/2">
             BiteWise is a Decision Support System built for calculating the best
-            restaurant around. As a user, you just need to provide some basic
+            food around. As a user, you just need to provide some basic
             scoring and voila! BiteWise will rank those choices!
           </p>
           <Link href="/choose-method">

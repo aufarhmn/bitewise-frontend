@@ -36,14 +36,14 @@ export default function ChooseMethod() {
   const items = [
     {
       id: 1,
-      name: "Restaurant Recommender",
+      name: "Manual Input",
       image: Cereal,
-      path: "/restaurant",
-      info: "Receive personalized restaurant recommendations tailored to your tastes! Choose between two powerful methods—Scoring Method and AHP. Simply define your preferences, assign weights, and score each option to discover your perfect dining experience"
+      path: "/manual",
+      info: "Receive personalized food recommendations tailored to your tastes! Choose between two powerful methods—Scoring Method and AHP. Simply define your preferences, assign weights, and score each option to discover your perfect dining experience"
     },
     {
       id: 2,
-      name: "Food Recommender",
+      name: "Automated Input",
       image: Kebab,
       path: "/food",
       info: "Uncover delicious food recommendations tailored just for you! We'll provide a curated selection of choices, and based on your preferences, offer exciting and similar food options that match your taste perfectly. Bon appétit!"

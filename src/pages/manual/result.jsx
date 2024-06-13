@@ -17,7 +17,7 @@ export default function Result() {
         console.log("Failed to parse data");
       }
     } else {
-      router.replace("/restaurant");
+      router.replace("/manual");
     }
   }, [router]);
 

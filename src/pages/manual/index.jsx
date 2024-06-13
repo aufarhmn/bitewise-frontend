@@ -7,10 +7,12 @@ import Banana from "@/assets/image/banana.png";
 import Orange from "@/assets/image/orange.png";
 import Omlete from "@/assets/image/omlete.png";
 import { useRouter } from "next/router";
+import { IoIosInformationCircleOutline } from "react-icons/io";
 
 export default function ChooseAlgorithm() {
   const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(null);
+  const [modalContent, setModalContent] = useState("");
 
   const handleClick = (index, algorithm) => {
     setActiveIndex(index);
@@ -23,12 +25,29 @@ export default function ChooseAlgorithm() {
       return;
     }
 
-    router.push("/restaurant/input");
+    router.push("/manual/input");
+  };
+
+  const handleInfoClick = (content) => {
+    setModalContent(content);
+    document.getElementById("info_modal").showModal();
   };
 
   const items = [
-    { id: 1, name: "TOPSIS", image: Banana, algorithm: "topsis" },
-    { id: 2, name: "Scoring Method", image: Orange, algorithm: "scoring" },
+    {
+      id: 1,
+      name: "TOPSIS",
+      image: Banana,
+      algorithm: "topsis",
+      info: "TOPSIS is a decision-making method that helps you choose the best option by comparing the distances between each option and the ideal (best) and negative-ideal (worst) solutions. It evaluates each choice based on how close it is to the ideal solution, considering multiple criteria."
+    },
+    {
+      id: 2,
+      name: "Scoring Method",
+      image: Orange,
+      algorithm: "scoring",
+      info: "The Scoring Method is a straightforward way to evaluate different options by assigning scores based on various criteria. Each criterion is weighted according to its importance, and the total score for each option is calculated to determine the best choice."
+    }
     // { id: 3, name: "AHP", image: Omlete, algorithm: "ahp" }
   ];
 
@@ -54,8 +73,19 @@ export default function ChooseAlgorithm() {
                 activeIndex === index
                   ? "border-green-200 bg-green-100"
                   : "border-gray-200"
-              } border-2 rounded-lg flex flex-col items-center justify-center gap-2 cursor-pointer`}
+              } border-2 rounded-lg flex flex-col items-center justify-center gap-2 cursor-pointer relative`}
             >
+              <div className="absolute top-2 right-2">
+                <button
+                  className="btn btn-sm btn-circle btn-ghost"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleInfoClick(item.info);
+                  }}
+                >
+                  <IoIosInformationCircleOutline className="w-3/4 h-3/4" />
+                </button>
+              </div>
               <div>
                 <Image src={item.image} alt="Cereal" width={200} height={200} />
               </div>
@@ -71,6 +101,18 @@ export default function ChooseAlgorithm() {
           <Button text="Start!" />
         </div>
       </div>
+
+      <dialog id="info_modal" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+          <h3 className="font-bold text-lg text-center">About The Method</h3>
+          <p className="py-4 text-center">{modalContent}</p>
+        </div>
+      </dialog>
     </>
   );
 }

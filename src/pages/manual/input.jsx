@@ -21,7 +21,7 @@ export default function InputRestaurant() {
       setAlgorithm(storedAlgorithm);
     } else {
       alert("Please choose algorithm!");
-      router.replace("/restaurant");
+      router.replace("/manual");
     }
   }, [router]);
 
@@ -43,7 +43,7 @@ export default function InputRestaurant() {
         .then((res) => {
           console.log(res);
           localStorage.setItem("restaurantResult", JSON.stringify(res.data.scores));
-          router.push("/restaurant/result");
+          router.push("/manual/result");
         })
         .catch((err) => {
           console.log(err);
