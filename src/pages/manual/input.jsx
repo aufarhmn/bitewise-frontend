@@ -14,16 +14,60 @@ export default function InputRestaurant() {
   const [inputValues, setInputValues] = useState({});
   const [negativityBias, setNegativityBias] = useState([]);
   const [error, setError] = useState("");
+  const [modalContent, setModalContent] = useState("");
+
+  const handleInfoClick = () => {
+    document.getElementById("info_modal").showModal();
+  };
 
   useEffect(() => {
     const storedAlgorithm = localStorage.getItem("algorithm");
     if (storedAlgorithm) {
       setAlgorithm(storedAlgorithm);
+      generateModalContent(storedAlgorithm);
     } else {
       alert("Please choose algorithm!");
       router.replace("/manual");
     }
+
+    const modal = document.getElementById("info_modal");
+    if (modal) {
+      modal.showModal();
+    }
   }, [router]);
+
+  const generateModalContent = (algorithm) => {
+    let content = "";
+    switch (algorithm) {
+      case "topsis":
+        content = `
+        <div>
+        <div style="text-align: center;">
+          <h3><b>TOPSIS (Technique for Order of Preference by Similarity to Ideal Solution)</b></h3>
+          </div>
+          <p><b>Criteria:</b> Criteria are the parameters or factors against which the choices (alternatives) are evaluated. Examples include price, location, food quality, service, ambiance, etc.</p>
+          <p><b>Weights:</b> Weights represent the relative importance of each criterion. Each weight is a numerical value, typically between 0 and 1, and the sum of all weights should be 1. For example, if food quality is more important than location, food quality might have a weight of 0.5 and location might have a weight of 0.3.</p>
+          <p><b>Bias:</b> Bias (negativity bias in this context) indicates whether a criterion is beneficial or non-beneficial. For example, lower price is better (beneficial), while higher distance is worse (non-beneficial).</p>
+          <p><b>Choices:</b> Choices are the alternatives being evaluated, such as different restaurants.</p>
+          </div>
+        `;
+        break;
+      case "scoring":
+        content = `
+        <div>
+          <div style="text-align: center;">
+            <h3><b>Scoring Method</b></h3>
+            </div>
+            <p><b>Criteria:</b> Criteria are the parameters or factors against which choices are evaluated. Examples include price, location, food quality, service, ambiance, etc.</p>
+            <p><b>Weights:</b> Weights in the scoring method represent the importance of each criterion, similar to TOPSIS. They are numerical values, typically between 0 and 1, summing to 1.</p>
+            <p><b>Bias:</b> Bias in the scoring method refers to whether a higher score on a criterion is positive or negative. For instance, a lower score in "cost" is preferred.</p>
+            <p><b>Choices:</b> Choices are the alternatives being evaluated, such as different restaurants.</p>
+          </div>
+        `;
+        break;
+    }
+    setModalContent(content);
+  };
 
   const handleClick = () => {
     if (validateWeights()) {
@@ -42,7 +86,10 @@ export default function InputRestaurant() {
         )
         .then((res) => {
           console.log(res);
-          localStorage.setItem("restaurantResult", JSON.stringify(res.data.scores));
+          localStorage.setItem(
+            "restaurantResult",
+            JSON.stringify(res.data.scores)
+          );
           router.push("/manual/result");
         })
         .catch((err) => {
@@ -225,15 +272,32 @@ export default function InputRestaurant() {
             </tbody>
           </table>
         </div>
-        <div className="flex flex-row-reverse justify-start w-full h-full px-8 py-8">
+        <div className="flex flex-row-reverse justify-between w-full h-full px-8 py-8">
           <button
             onClick={handleClick}
             className="w-[90px] h-[85px] bg-green-400 rounded-full"
           >
             <p className="text-white text-[30px] font-bold">&gt;</p>
           </button>
+          <button
+            onClick={handleInfoClick}
+            className="w-[90px] h-[85px] border-2 border-green-400 rounded-full"
+          >
+            <p className="text-green-400 text-[20px] font-semibold">?</p>
+          </button>
         </div>
       </div>
+
+      <dialog id="info_modal" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+          <div dangerouslySetInnerHTML={{ __html: modalContent }} />
+        </div>
+      </dialog>
     </>
   );
 }
