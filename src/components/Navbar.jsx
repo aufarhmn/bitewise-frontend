@@ -20,9 +20,6 @@ export default function Navbar() {
             </p>
           </Link>
         </div>
-        <div className="flex-none">
-          <Image src={Profile} alt="Profile Icon" width={50} height={50} />
-        </div>
       </div>
     </>
   );

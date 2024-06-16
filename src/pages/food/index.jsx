@@ -27,7 +27,7 @@ export default function ML() {
     "Beverage",
     "Thai",
     "Korean",
-    "Vietnamese",
+    "Vietnames",
     "Nepalese"
   ];
 

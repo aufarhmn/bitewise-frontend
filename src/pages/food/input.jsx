@@ -65,15 +65,15 @@ export default function Input() {
           {foodChoices.map((food, index) => (
             <div
               key={index}
-              onClick={() => handleCardClick(index, food.Name)}
+              onClick={() => handleCardClick(index, food.name)}
               className={`border-2 rounded-lg p-4 shadow-md cursor-pointer text-center text-green-200 ${
                 selectedFoodIndex === index
                   ? "bg-green-100 border-green-200"
                   : ""
               }`}
             >
-              <h3 className="font-extrabold text-lg mb-2">{food.Name}</h3>
-              <p className="text-sm">{food.Describe}</p>
+              <h3 className="font-extrabold text-lg mb-2">{food.name}</h3>
+              <p className="text-sm">{food.describe}</p>
             </div>
           ))}
         </div>
